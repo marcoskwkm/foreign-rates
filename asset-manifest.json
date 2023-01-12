@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/foreign-rates/static/css/main.17b057b4.css",
-    "main.js": "/foreign-rates/static/js/main.02be90fd.js",
+    "main.js": "/foreign-rates/static/js/main.0ecd2ef5.js",
     "index.html": "/foreign-rates/index.html",
     "main.17b057b4.css.map": "/foreign-rates/static/css/main.17b057b4.css.map",
-    "main.02be90fd.js.map": "/foreign-rates/static/js/main.02be90fd.js.map"
+    "main.0ecd2ef5.js.map": "/foreign-rates/static/js/main.0ecd2ef5.js.map"
   },
   "entrypoints": [
     "static/css/main.17b057b4.css",
-    "static/js/main.02be90fd.js"
+    "static/js/main.0ecd2ef5.js"
   ]
 }

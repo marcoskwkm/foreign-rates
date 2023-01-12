@@ -4,6 +4,8 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import ExchangeRate from './components/ExchangeRate'
 import { Rate } from './types'
 
+const ONE_MINUTE_MS = 60 * 1000
+
 const App = () => {
   const convs = useMemo(
     () =>
@@ -16,13 +18,16 @@ const App = () => {
 
   const [rates, setRates] = useState<Rate[]>([])
   const [lastUpdated, setLastUpdated] = useState<number>(0)
+  const [error, setError] = useState<boolean>(false)
 
   const updateRates = useCallback(() => {
     Promise.all(
       convs.map(([from, to]) =>
-        fetch(
-          `https://get-rates-oirvexovfa-rj.a.run.app?from=${from}&to=${to}`
-        ).then((res) => res.json())
+        fetch(`https://get-rates-oirvexovfa-rj.a.run.app?from=${from}&to=${to}`)
+          .then((res) => res.json())
+          .catch(() => {
+            setError(true)
+          })
       )
     ).then((rates) => {
       setLastUpdated(Math.min(...pluck('time', rates)))
@@ -32,6 +37,8 @@ const App = () => {
 
   useEffect(() => {
     updateRates()
+    const interval = setInterval(updateRates, ONE_MINUTE_MS)
+    return () => clearInterval(interval)
   }, [updateRates])
 
   return (
@@ -44,6 +51,10 @@ const App = () => {
             ?from=usd&to=brl
           </div>
         </>
+      ) : error ? (
+        <>
+          <div>The application API seems to be down =(</div>
+        </>
       ) : (
         <>
           <div className="flex flex-col gap-y-2">
@@ -53,11 +64,13 @@ const App = () => {
           </div>
           <div className="mt-2 text-sm">
             Last updated:{' '}
-            {new Date(lastUpdated).toLocaleTimeString('pt-BR', {
-              year: '2-digit',
-              month: '2-digit',
-              day: '2-digit',
-            })}
+            {lastUpdated
+              ? new Date(lastUpdated).toLocaleTimeString('pt-BR', {
+                  year: '2-digit',
+                  month: '2-digit',
+                  day: '2-digit',
+                })
+              : '--/--/-- --:--:--'}
           </div>
         </>
       )}

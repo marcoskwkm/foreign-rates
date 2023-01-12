@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/foreign-rates/static/css/main.17b057b4.css",
+    "main.js": "/foreign-rates/static/js/main.02be90fd.js",
+    "index.html": "/foreign-rates/index.html",
+    "main.17b057b4.css.map": "/foreign-rates/static/css/main.17b057b4.css.map",
+    "main.02be90fd.js.map": "/foreign-rates/static/js/main.02be90fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17b057b4.css",
+    "static/js/main.02be90fd.js"
+  ]
+}

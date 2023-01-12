@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/foreign-rates/static/css/main.17b057b4.css",
-    "main.js": "/foreign-rates/static/js/main.85e232bd.js",
+    "main.css": "/foreign-rates/static/css/main.cc8e26ca.css",
+    "main.js": "/foreign-rates/static/js/main.5f1bd23b.js",
     "index.html": "/foreign-rates/index.html",
-    "main.17b057b4.css.map": "/foreign-rates/static/css/main.17b057b4.css.map",
-    "main.85e232bd.js.map": "/foreign-rates/static/js/main.85e232bd.js.map"
+    "main.cc8e26ca.css.map": "/foreign-rates/static/css/main.cc8e26ca.css.map",
+    "main.5f1bd23b.js.map": "/foreign-rates/static/js/main.5f1bd23b.js.map"
   },
   "entrypoints": [
-    "static/css/main.17b057b4.css",
-    "static/js/main.85e232bd.js"
+    "static/css/main.cc8e26ca.css",
+    "static/js/main.5f1bd23b.js"
   ]
 }

@@ -39,7 +39,10 @@ const App = () => {
       {convs.length === 0 ? (
         <>
           <div>No rates to display. Add some via query string.</div>
-          <div>Example: {window.location.host}/?from=usd&to=brl</div>
+          <div>
+            Example: {window.location.host + window.location.pathname}
+            ?from=usd&to=brl
+          </div>
         </>
       ) : (
         <>

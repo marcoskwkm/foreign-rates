@@ -6,6 +6,21 @@ import { Rate } from './types'
 
 const ONE_MINUTE_MS = 60 * 1000
 
+const callWithRetry = async <T extends unknown>(
+  f: () => Promise<T>,
+  retries: number = 3
+): Promise<T> => {
+  try {
+    return await f()
+  } catch (err) {
+    if (retries > 0) {
+      await new Promise((res) => setTimeout(res, 500))
+      return callWithRetry(f, retries - 1)
+    }
+    throw err
+  }
+}
+
 const App = () => {
   const convs = useMemo(
     () =>
@@ -23,8 +38,15 @@ const App = () => {
   const updateRates = useCallback(() => {
     Promise.all(
       convs.map(([from, to]) =>
-        fetch(`https://get-rates-oirvexovfa-rj.a.run.app?from=${from}&to=${to}`)
-          .then((res) => res.json())
+        callWithRetry(() =>
+          fetch(
+            `https://get-rates-oirvexovfa-rj.a.run.app?from=${from}&to=${to}`
+          )
+        )
+          .then((res) => {
+            setError(false)
+            return res.json()
+          })
           .catch(() => {
             setError(true)
           })
